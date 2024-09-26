@@ -1,0 +1,22 @@
+// Edits the mint price of the NFT collection
+
+TxScript EditCollectionMintPrice(
+    amount: U256,
+    nftCollectionId: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).editMintPrice(amount)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).editMintPrice(amount)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).editMintPrice(amount)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).editMintPrice(amount)
+        }
+    }
+}

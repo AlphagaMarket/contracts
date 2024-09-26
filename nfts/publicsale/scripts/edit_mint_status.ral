@@ -1,0 +1,20 @@
+TxScript EditMintStatus(
+    newStatus: Bool,
+    nftCollectionId: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).editMintStatus(newStatus)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).editMintStatus(newStatus)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).editMintStatus(newStatus)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).editMintStatus(newStatus)
+        }
+    }
+}

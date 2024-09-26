@@ -1,0 +1,20 @@
+TxScript EditMaxBatchMint(
+    newMaxBatch: U256,
+    nftCollectionId: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).editBatchSize(newMaxBatch)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).editBatchSize(newMaxBatch)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).editBatchSize(newMaxBatch)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).editBatchSize(newMaxBatch)
+        }
+    }
+}

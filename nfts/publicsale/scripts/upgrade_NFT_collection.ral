@@ -1,0 +1,22 @@
+TxScript UpgradeNFTCollection (
+    nftCollectionId: ByteVec,
+    newCode: ByteVec, 
+    newImmFieldsEncoded: ByteVec, 
+    newMutFieldsEncoded: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).upgradeNFTCollection(newCode, newImmFieldsEncoded, newMutFieldsEncoded)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).upgradeNFTCollection(newCode, newImmFieldsEncoded, newMutFieldsEncoded)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).upgradeNFTCollection(newCode, newImmFieldsEncoded, newMutFieldsEncoded)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).upgradeNFTCollection(newCode, newImmFieldsEncoded, newMutFieldsEncoded)
+        }
+    }
+}

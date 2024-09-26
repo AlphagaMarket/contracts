@@ -1,0 +1,20 @@
+TxScript EditCollectionOwner(
+    newOwner: Address,
+    nftCollectionId: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).editCollectionOwner(newOwner)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).editCollectionOwner(newOwner)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).editCollectionOwner(newOwner)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).editCollectionOwner(newOwner)
+        }
+    }
+}

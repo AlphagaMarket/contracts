@@ -1,0 +1,20 @@
+TxScript EditCollectionUri(
+    newUri: ByteVec,
+    nftCollectionId: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).editCollectionUri(newUri)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).editCollectionUri(newUri)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).editCollectionUri(newUri)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).editCollectionUri(newUri)
+        }
+    }
+}

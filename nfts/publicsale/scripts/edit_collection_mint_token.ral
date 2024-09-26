@@ -1,0 +1,20 @@
+TxScript EditMintToken(
+    token: ByteVec,
+    nftCollectionId: ByteVec,
+    royalty: Bool,
+    isRandom: Bool
+) {
+    if (isRandom) {
+        if (royalty) {
+            NFTPublicSaleCollectionRandomWithRoyalty(nftCollectionId).editMintToken(token)
+        } else {
+            NFTPublicSaleCollectionRandom(nftCollectionId).editMintToken(token)
+        }
+    } else {
+        if (royalty) {
+            NFTPublicSaleCollectionSequentialWithRoyalty(nftCollectionId).editMintToken(token)
+        } else {
+            NFTPublicSaleCollectionSequential(nftCollectionId).editMintToken(token)
+        }
+    }
+}
